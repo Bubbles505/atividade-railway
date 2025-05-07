@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(express.static('.')); 
 
 const pool = mysql.createPool({
-    host: 'mysql-luacristaly-e0c9.l.aivencloud.com',
-    port: '13161',
-    user: 'avnadmin',
-    password: 'AVNS_vnc-QH4w_kjift6VvFi',
-    database: 'defaultdb'
+    host: 'switchback.proxy.rlwy.net',
+    port: '14551',
+    user: 'root',
+    password: 'DnpePzjaXktowwFJyHrXUFAUfBjkryYG',
+    database: 'railway'
 });
 
 app.post('/api/mysql', async (req, res) => {
@@ -24,7 +24,7 @@ app.post('/api/mysql', async (req, res) => {
         case 'cadastro':
             try {
                 var [rows, fields] = await pool.query(
-                    "insert into `defaultdb`.`tbl_clientes` (`nome`, `login`, `senha`) values (?, ?, ?);",
+                    "insert into `railway`.`tbl_clientes` (`nome`, `login`, `senha`) values (?, ?, ?);",
                     [nome, login, senha]
                 );
                 if (rows.affectedRows > 0) {
@@ -42,7 +42,7 @@ app.post('/api/mysql', async (req, res) => {
         case 'login':
             try {
                 var [rows, fields] = await pool.query(
-                    "select * from `defaultdb`.`tbl_clientes` where `nome` = ? and `login` = ? and `senha` = ?;",
+                    "select * from `railway`.`tbl_clientes` where `nome` = ? and `login` = ? and `senha` = ?;",
                     [nome, login, senha]
                 );
                 if (rows.length == 1) {
